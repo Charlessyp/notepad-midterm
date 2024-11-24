@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="#F5F5F5">
+
+    <!-- 为 ImageView 添加 contentDescription 和触控区域调整 -->
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/zero"
+        android:background="@drawable/img_6"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/one"
+        android:background="@drawable/img_5"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/two"
+        android:background="@drawable/img_4"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/three"
+        android:background="@drawable/img_3"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/four"
+        android:background="@drawable/img_2"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/five"
+        android:background="@drawable/img_1"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/six"
+        android:background="@drawable/img"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+
+</LinearLayout>
