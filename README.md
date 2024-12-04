@@ -157,7 +157,7 @@
 - **效果展示**：
     - 用户可自由选择背景颜色，应用界面更加美观、个性化。
 
-**截图展示**：
+**截图展示**：  
 ![主题切换功能](screenshot/a.png)
 ![主题切换功能](screenshot/thirda.png)
 ![主题切换功能](screenshot/fourtha.png)
