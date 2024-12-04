@@ -40,7 +40,6 @@
         String sd = sdf.format(new Date(Long.parseLong(beginDate)));
         return  sd;
     }}
-
   ```
 - **效果展示**：
     - 笔记列表每条记录下方显示对应时间，清晰明确。
@@ -94,7 +93,7 @@
         dialog.show();//显示对话框
     }
   ```
-  自定义主题样式：
+  - 自定义主题样式：
   ```xml
   <string name="background">Theme</string>
   ```
@@ -108,7 +107,7 @@
         android:contentDescription="@null"
         android:onClick="ColorSelect" />
   ```
-  背景改变监听器：
+ - 背景改变监听器：
  ```java
   public void ColorSelect(View view){
     String color;
@@ -173,7 +172,7 @@
     - 分类筛选：在笔记列表页添加分类筛选选项，动态加载选定分类的笔记。
 - **核心代码**：
     1. **数据库扩展**：
-    添加category字段：
+    - 添加category字段：
        ```java
        @Override
         public void onCreate(SQLiteDatabase db) {
@@ -189,7 +188,7 @@
         }
        ```
     2. **分类筛选逻辑**：
-       在 NoteList 类中，筛选笔记并更新显示：
+       - 在 NoteList 类中，筛选笔记并更新显示：
        ```java
        private void filterNotesByCategory(String category) {
         Cursor cursor;
@@ -222,7 +221,7 @@
             adapter.changeCursor(cursor); // 替换 mAdapter 为 adapter
         }}
        ```
-       显示分类对话框：
+       - 显示分类对话框：
        ```java
        private void showCategoryFilterDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
