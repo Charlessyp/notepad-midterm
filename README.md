@@ -72,6 +72,7 @@
     - 在搜索框中输入关键字，列表动态更新显示符合条件的笔记。
 
 **截图展示**：  
+![搜索功能](screenshot/b.png)
 ![搜索功能](screenshot/seconda.png)
 
 ---
