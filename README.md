@@ -10,8 +10,8 @@
     - **基础功能**：实现笔记的创建、编辑、删除等基本操作。
     - **时间显示**：记录笔记的创建时间，帮助用户按时间梳理信息。
     - **快速检索**：支持关键字搜索，提升笔记查询效率。
-    - **分类管理**：通过对笔记分类分组，优化笔记管理逻辑。
-    - **个性化界面**：提供主题切换功能，增强用户体验。
+    - **分类管理（扩展）**：通过对笔记分类分组，优化笔记管理逻辑。
+    - **个性化界面（扩展）**：提供主题切换功能，增强用户体验。
 3. **用户需求分析**：
     - 用户希望快速记录信息，避免复杂交互。
     - 笔记数量较多时需要高效检索和分类功能。
@@ -46,7 +46,7 @@
     - 笔记列表每条记录下方显示对应时间，清晰明确。
 
 **截图展示**：  
-![时间戳功能](screenshot/first.png)
+![时间戳功能](screenshot/a.png)
 
 ---
 
@@ -73,11 +73,11 @@
     - 在搜索框中输入关键字，列表动态更新显示符合条件的笔记。
 
 **截图展示**：  
-![搜索功能](screenshot/second.png)
+![搜索功能](screenshot/seconda.png)
 
 ---
 
-### 3. **UI 美化**
+### 3. **UI 美化（扩展）**
 - **功能描述**：支持用户选择不同主题，优化界面视觉体验。
 - **实现思路**：
     - 提供主题切换功能，通过点击不同颜色选项动态改变背景色。
@@ -98,17 +98,74 @@
   ```xml
   <string name="background">Theme</string>
   ```
+  ```xml
+  <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:id="@+id/zero"
+        android:background="@drawable/img_6"
+        android:contentDescription="@null"
+        android:onClick="ColorSelect" />
+  ```
+  背景改变监听器：
+ ```java
+  public void ColorSelect(View view){
+    String color;
+    switch(view.getId()){
+        case R.id.zero:
+
+            Drawable btnDrawable1 = getResources().getDrawable(R.drawable.img_6);
+            ll_noteList.setBackgroundDrawable(btnDrawable1);
+            lv_notesList.setBackgroundDrawable(btnDrawable1);
+
+            break;
+        case R.id.one:
+            Drawable btnDrawable2 = getResources().getDrawable(R.drawable.img_5);
+            ll_noteList.setBackgroundDrawable(btnDrawable2);
+            lv_notesList.setBackgroundDrawable(btnDrawable2);
+            break;
+        case R.id.two:
+            Drawable btnDrawable3 = getResources().getDrawable(R.drawable.img_4);
+            ll_noteList.setBackgroundDrawable(btnDrawable3);
+            lv_notesList.setBackgroundDrawable(btnDrawable3);
+            break;
+        case R.id.three:
+            Drawable btnDrawable4 = getResources().getDrawable(R.drawable.img_3);
+            ll_noteList.setBackgroundDrawable(btnDrawable4);
+            lv_notesList.setBackgroundDrawable(btnDrawable4);
+            break;
+        case R.id.four:
+            Drawable btnDrawable5 = getResources().getDrawable(R.drawable.img_2);
+            ll_noteList.setBackgroundDrawable(btnDrawable5);
+            lv_notesList.setBackgroundDrawable(btnDrawable5);
+            break;
+        case R.id.five:
+            Drawable btnDrawable6 = getResources().getDrawable(R.drawable.img_1);
+            ll_noteList.setBackgroundDrawable(btnDrawable6);
+            lv_notesList.setBackgroundDrawable(btnDrawable6);
+            break;
+        case R.id.six:
+            Drawable btnDrawable7 = getResources().getDrawable(R.drawable.img);
+            ll_noteList.setBackgroundDrawable(btnDrawable7);
+            lv_notesList.setBackgroundDrawable(btnDrawable7);
+            break;
+    }
+
+}
+  ```
+
 - **效果展示**：
     - 用户可自由选择背景颜色，应用界面更加美观、个性化。
 
-**截图展示**：  
-![主题切换功能](screenshot/third.png)
-![主题切换功能](screenshot/fourth.png)
-![主题切换功能](screenshot/fifth.png)
+**截图展示**：
+![主题切换功能](screenshot/a.png)
+![主题切换功能](screenshot/thirda.png)
+![主题切换功能](screenshot/fourtha.png)
 
 ---
 
-### 4. **笔记分类功能**
+### 4. **笔记分类功能（扩展）**
 - **功能描述**：用户可为笔记添加分类标签，并按分类筛选笔记。
 - **实现思路**：
     - 数据库扩展：在笔记表中新增分类字段。
@@ -116,6 +173,7 @@
     - 分类筛选：在笔记列表页添加分类筛选选项，动态加载选定分类的笔记。
 - **核心代码**：
     1. **数据库扩展**：
+    添加category字段：
        ```java
        @Override
         public void onCreate(SQLiteDatabase db) {
@@ -131,6 +189,7 @@
         }
        ```
     2. **分类筛选逻辑**：
+       在 NoteList 类中，筛选笔记并更新显示：
        ```java
        private void filterNotesByCategory(String category) {
         Cursor cursor;
@@ -163,15 +222,38 @@
             adapter.changeCursor(cursor); // 替换 mAdapter 为 adapter
         }}
        ```
+       显示分类对话框：
+       ```java
+       private void showCategoryFilterDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("选择分类");
+
+        // 分类选项，与 strings.xml 中的分类选项保持一致
+        final String[] categories = getResources().getStringArray(R.array.note_categories);
+
+        builder.setItems(categories, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 获取选择的分类
+                String selectedCategory = categories[which];
+
+                // 更新笔记列表显示
+                filterNotesByCategory(selectedCategory);
+            }
+        });
+
+        builder.setNegativeButton("取消", null);
+        builder.show();
+       }
+       ```
 - **效果展示**：
     - 用户可为每条笔记选择分类，并通过筛选器查看同一分类下的所有笔记。
 
 **截图展示**：  
-![分类功能](screenshot/sixth.png)
-![分类功能](screenshot/seventh.png)
-![分类功能](screenshot/eighth.png)
-![分类功能](screenshot/ninth.png)
-![分类功能](screenshot/tenth.png)
+![分类功能](screenshot/lasta.png)
+![分类功能](screenshot/seventha.png)
+![分类功能](screenshot/eightha.png)
+![分类功能](screenshot/ninthb.png)
 
 ---
 
